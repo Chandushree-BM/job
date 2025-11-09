@@ -1,17 +1,11 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "client/**",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "client/dist",
-        "buildCommand": "cd client && npm install && npm run build"
-      }
-    }
-  ],
+  "framework": "vite",
+  "buildCommand": "cd client && npm install && npm run build",
+  "outputDirectory": "client/dist",
+  "installCommand": "cd client && npm install",
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/.*", "dest": "client/dist/index.html" }
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
